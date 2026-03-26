@@ -1,13 +1,116 @@
+/* Fundo geral */
 body {
-  background-color: rgb(147, 60, 165); /*Pode escolher outra cor se quiser*/
+  background-color: rgb(235, 154, 217);
+  font-family: 'Playwrite IE', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
 }
 
+/* Caixa da carta */
+.carta {
+  background-color: #fff0f7;
+  border: 2px solid rgb(161, 45, 116);
+  border-radius: 15px;
+  padding: 30px 40px;
+  max-width: 600px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Título */
 h1 {
-  color: rgb(231, 223, 106); /*Pode escolher outra cor se quiser*/
+  color: rgb(161, 45, 116);
   text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Playwrite IE', sans-serif;
+  font-size: 36px;
 }
 
+/* Parágrafos */
 p {
-  font-family: verdana;
+  font-family: 'Indie Flower', cursive;
   font-size: 20px;
+  color: rgb(117, 41, 113);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: bold; 
+}
+
+/* Assinatura */
+.assinatura {
+  text-align: right;
+  font-size: 22px;
+  margin-top: 30px;
+}
+
+/* Container de corações atrás da carta */
+.coracoes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* não interfere nos cliques */
+  overflow: hidden;
+  z-index: 0; /* atrás da carta */
+}
+
+/* Coração individual */
+.coracao {
+  position: absolute;
+  bottom: -20px; /* começa fora da tela */
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 105, 180);
+  transform: rotate(45deg);
+  animation-name: subir;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Forma de coração usando pseudo-elementos */
+.coracao::before,
+.coracao::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 105, 180);
+  border-radius: 50%;
+}
+
+.coracao::before {
+  top: -10px;
+  left: 0;
+}
+
+.coracao::after {
+  top: 0;
+  left: -10px;
+}
+
+/* Animação de subida com leve oscilação */
+@keyframes subir {
+  0% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(15px) rotate(45deg);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(-15px) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Garantir que a carta fique na frente */
+.carta {
+  position: relative;
+  z-index: 1;
 }
